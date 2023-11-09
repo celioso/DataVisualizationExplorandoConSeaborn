@@ -1,2 +1,1 @@
-# DataVisualizationExplorandoConSeaborn
-Data Visualization Explorando con Seaborn
+# Data Visualization Explorando con Seaborn
