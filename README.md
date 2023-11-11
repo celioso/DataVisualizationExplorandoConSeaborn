@@ -135,3 +135,72 @@ Lo que aprendimos en esta aula:
 ¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
 
 [Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula1 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula1.zip "aquí") para descargarlos directamente.
+
+### Haga lo que hicimos en aula
+
+Para esta aula y para las siguientes aulas usaremos Seaborn, una biblioteca para análisis visual de datos. Para hacer la instalación puedes usar pip, así como está descrito abajo.
+
+Si estás usando Google Colaboratory, la biblioteca ya está instalada.
+
+```python
+!pip install seaborn
+```
+Usaremos la versión 0.11
+
+Para importar Seaborn en nuestro notebook lo hacemos de la siguiente forma:
+```python
+import seaborn as sns
+```
+Usamos sns por convención.
+
+Vamos a comenzar mostrando un ejemplo de las imágenes que podemos crear con Seaborn usando la función `displot`.
+
+Esta función nos permite ver la función de una variable:
+```python
+sns.displot(data=tarjetas, x='limite', hue='escolaridad')
+```
+- data: es nuestra base de datos
+- x: es la variable numérica que vamos a analizar.
+
+**Creación de variable**
+
+Ahora crearemos una nueva variable en nuestra base de datos, esto para profundizar en el entendimiento de nuestra variables y poder crear relaciones entre ellas. Crearemos el Índice de Uso (IU) que es el porcentaje que usamos del total de límite disponible que tenemos.
+```python
+tarjetas['iu'] = tarjetas['valor_factura'] / tarjetas['limite']
+```
+Y generamos nuevamente un gráfico de distribución para saber cómo se comporta nuestra variable con los clientes que tenemos en la base de datos:
+```python
+sns.displot(data=tarjetas, x='iu')
+```
+**Algunas características de Seaborn**
+
+Seaborn es una biblioteca que usa la biblioteca Matplotlib para realizar todos sus procesos. Dado este hecho, algunas características de Matplotlib están disponibles para nosotros en Seaborn, por ejemplo, podemos usar las opciones de colores que Matplotlib nos ofrece para personalizar nuestros gráficos de la forma que queramos.
+
+En este [link](https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html "link") podemos conocer todas las opciones de colores que tenemos disponibles.
+
+Para hacer uso de esta usamos el parámetro `palette` en nuestras funciones de Seaborn.
+
+Como ejemplo:
+```python
+sns.displot(data=tarjetas, x='limite', hue='escolaridad', palette='inferno_r');
+```
+Seaborn también nos permite dar algunos estilo a nuestros gráficos, para hacer uso de esto, podemos usar la función `set_style()`
+
+Solo debemos ejecutarla una vez y todos los gráficos que generemos después de la ejecución ya estarán parametrizados, las opciones que tenemos son: `(darkgrid, whitegrid, dark, white, ticks)`, ejemplo:
+```python
+sns.set_style(‘darkgrid’)
+```
+### Lo que aprendimos
+
+Lo que aprendimos en esta aula:
+
+- Importamos Seaborn para analizar de forma gráfica las variables que tenemos en nuestra base de datos.
+- Construimos una nueva variable numérica en nuestra base de datos.
+- Creamos un histograma para analizar variables en nuestra base de datos.
+- Descubrimos los estilos y colores que Seaborn nos ofrece.
+
+### Proyecto del aula anterior
+
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+[Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula2 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula2.zip "aquí") para descargarlos directamente.
