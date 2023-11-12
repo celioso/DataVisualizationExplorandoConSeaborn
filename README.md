@@ -204,3 +204,89 @@ Lo que aprendimos en esta aula:
 ¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
 
 [Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula2 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula2.zip "aquí") para descargarlos directamente.
+
+### Haga lo que hicimos en aula
+
+En esta aula conocemos algunos gráficos que nos permiten analizar fácilmente variables categóricas o de texto.
+
+**Countplot**
+
+Este gráfico nos permite contar el número de vezes que una opción se repite en una variable, por ejemplo, la variable Cuenta corriente tiene las opciones `Si` y `No`, con countplot podemos contar el numero de vezes que cada una está en la base.
+
+```python
+sns.countplot(x='cuenta_corriente', data= tarjetas)
+```
+No sólo eso, con el parámetro `hue` de esta función podemos traer otra variable para nuestro gráfico y analizarla al lado de nuestra variable `x`. Podemos aprovechar para usar el parámetro `palette` y personalizar un poco nuestro gráfico.
+```python
+sns.countplot(x='cuenta_corriente', data= tarjetas, hue='moroso', palette='coolwarm')
+```
+**Catplot**
+
+Este gráfico nos permite comparar una variable categórica (eje x) y una variable numérica (eje y). Podemos ver cómo está distribuida nuestra variable categórica en relación con nuestra variable numérica:
+```python
+sns.catplot(x='estado_civil', y='limite', data=tarjetas)
+```
+De la misma forma podemos usar el parámetro `hue`, para traer otra variable a nuestro gráfico, también usamos el parámetro dodge para que se muestran columnas diferentes para esta variable y no se agrupen solamente en una columna.
+```python
+sns.catplot(x='estado_civil', y='limite', data=tarjetas, hue='moroso', dodge=True)
+```
+**Swarmplot**
+
+Es un gráfico bastante parecido al `catplot` solo que en este gráfico los puntos de nuestra variable no se sobreponen. Por este detalle, cuando la base de datos es muy grande es posible que algunos datos se pierdan.
+```python
+sns.swarmplot(x='escolaridad', y='iu', data=tarjetas)
+```
+**Boxplot**
+
+En este gráfico analizamos también una variable categórica y una variable numérica, nos permite observar más información de nuestra variable analizada. Aquí podemos usar también algunos parámetros como `hue` o `palette`.
+
+```python
+sns.boxplot(x='escolaridad', y='iu', data=tarjetas, hue='moroso', palette='bone')
+```
+Comencemos viendo el rectángulo, la línea inferior es el percentil 25%, la línea superior es el percentil 75% y la línea que cruza el rectángulo es el percentil 50% o la mediana.
+
+Hay dos líneas perpendiculares que van más allá de las medidas del rectángulo, el punto inferior de la línea que va hacia abajo es el punto mínimo en nuestra variable, y el punto máximo de la línea que va hacia arriba es el punto máximo.
+
+Si hay puntos más allá de estos dos líneas, estos son considerados outliers.
+
+**Violinplot**
+
+Este gráfico es muy parecido al boxplot, sólo que en este caso podemos ver la distribución de forma vertical en cada parámetro de nuestro gráfico.
+```python
+sns.violinplot(x='escolaridad', y='iu', data=tarjetas, hue='moroso')
+```
+**Creación de variable categórica a partir de una variable numérica**
+
+Vamos a analizar ahora una variable numérica, la edad, como podemos deducir, en esta variable tenemos muchos valores, desde 18 hasta 75 años (edad máxima en nuestra base de datos), para facilitar el análisis vamos a agruparlas en grupos. Haremos esto usando la función `cut` de pandas.
+
+Podemos saber las edades que tenemos en nuestra base de datos usando la siguiente fórmula:
+```python
+tarjetas.edad.unique()
+```
+Crearemos 4 rangos usando el siguiente código:
+```python
+bins = [18, 30, 40, 50, 100]
+nombres = ['18-30', '30-40', '40-50', '50+']
+tarjetas['rango_edad'] = pd.cut(tarjetas['edad'], bins, labels=nombres)
+```
+Los valores en la lista bins se usan como los límites mínimos y máximos de nuestros rangos. Lo que tenemos en nuestra lista `nombres` son los nombres de nuestros rangos, y en la tercera línea usamos la función `cut` para crear nuestra variable en la base de datos con el nombre `rango_edad`.
+
+Podemos analizarla inicialmente con un `boxplot` para ver su distribución inicial:
+```python
+sns.boxplot(x='rango_edad', y='limite', data= tarjetas);
+```
+
+**Lo que aprendimos**
+
+Lo que aprendimos en esta aula:
+
+- Aprendimos a crear diferentes gráficos que nos ayudan a analizar variables categóricas: countplot, catplot, swarmplot.
+- Aprendimos a usar el parámetro hue, que nos sirve para fraccionar una variable en nuestro gráfico.
+- Introducimos los gráficos boxplot y violinplot.
+- Creamos y analizamos con boxplot la variable categórica rango_edad.
+
+### Proyecto del aula anterior
+
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+[Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula3 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula3.zip "aquí") para descargarlos directamente.
