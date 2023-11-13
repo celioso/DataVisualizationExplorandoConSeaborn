@@ -362,3 +362,39 @@ Lo que aprendimos en esta aula:
 ¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
 
 [Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula4 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula4.zip "aquí") para descargarlos directamente.
+
+### Haga lo que hicimos en aula 
+
+**Jointplot**
+
+El `jointplot` nos permite analizar al mismo tiempo la distribución de dos variables de forma individual y como se relacionan estas variables entres ellas. En este gráfico también podemos usar el parámetro `hue` para analizar nuestros gráficos a partir de otra variable.
+
+```python
+sns.jointplot(x='edad', y='limite', data=tarjetas, kind='kde', hue='moroso')
+```
+Podemos definir el tipo de gráfico que queremos mostrar con el parámetro `kind`, las opciones que éste parámetro nos permite son:
+```python
+(“scatter”, “kde”, “hist”, “hex”, “reg”, “resid” )
+```
+**Pairplot**
+
+El `pairplot` nos permite visualizar con una línea de código cómo se relacionan todas las variables numéricas en nuestra base de datos, cuando la misma variable se cruza en la fila y la columna tendremos un gráfico de distribución, cuando se cruza una variable con las demás tendremos un gráfico de dispersión,
+
+En este gráfico también podemos usar el parámetro `hue` para incluir otra variable categórica en el análisis de los gráficos o el parámetro `palette` para darle una personalización a nuestro gráfico.
+```python
+sns.pairplot(data=tarjetas, hue='escolaridad', palette='cividis')
+```
+
+### Proyecto Final
+
+Aquí puedes descargar los archivos del proyecto completo.
+
+[Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula5 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula5.zip "aquí") para descargarlos directamente.
+
+### Lo que aprendimos
+
+Lo que aprendimos en esta aula:
+
+- Introducimos el gráfico jointplot con sus opciones: scatter, kde, hex. Esto para analizar la variable de edad y limite.
+- Hicimos un análisis descriptivo de las variables en nuestra base de datos.
+- Usamos el gráfico pairplot para hacer un análisis conjunto de todas nuestras variables numéricas en la base de datos.
