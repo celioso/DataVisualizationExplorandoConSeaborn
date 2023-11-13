@@ -290,3 +290,75 @@ Lo que aprendimos en esta aula:
 ¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
 
 [Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula3 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula3.zip "aquí") para descargarlos directamente.
+
+### Haga lo que hicimos en aula
+
+**Gráfico de distribución**
+
+En esta aula haremos el análisis de variables numéricas, comenzaremos profundizando en el gráfico de distribución del que ya hablamos anteriormente.
+
+En esta función también podemos usar algunos parámetros para hacer comparaciones de variables.
+
+```python
+sns.displot(data=tarjetas, x='limite', col='escolaridad', kind='kde');
+```
+Con el parámetro `col`, la función nos abre un gráfico para cada campo dentro de la variable que estamos analizando.
+
+Con el parámetro `hue`, podemos ver várias distribuciones dentro de un mismo gráfico, cada campo de la variable tendrá una distribución diferente:
+```python
+sns.displot(data=tarjetas, x='limite', kind='kde', hue='rango_edad');
+```
+**Gráfico de dispersión y línea de regresión**
+
+El gráfico de dispersión nos muestra cómo se relacionan dos variables numéricas y si existe alguna tendencia o correlación entre ellas, la podemos usar de la siguiente forma:
+```python
+sns.scatterplot(x='iu', y='valor_factura', data=tarjetas);
+```
+En esta función podemos usar el parámetro hue, lo que nos permitirá abrir varias dispersiones en el gráfico, una para cada campo de nuestra variable.
+
+```python
+sns.scatterplot(x='iu', y='valor_factura', data=tarjetas, hue='cuenta_corriente');
+```
+La línea de dispersión la podemos ver usando la función `lmplot` (linear model plot), este gráfico nos mostrará también un gráfico de dispersión y la línea de regresión que mejor se ajuste a la relación entre las dos variables:
+```python
+sns.lmplot(x='iu', y='valor_factura', data=tarjetas);
+```
+**Test de hipótesis**
+
+Ahora realizaremos un test de hipótesis con la variable moroso, para conocer si estos dos grupos (moroso y no moroso) son estadísticamente diferentes o no.
+
+Comenzamos importando la biblioteca scipy de python, dado que la usaremos para calcular más adelante el p-value.
+```python
+from scipy.stats import ranksums
+```
+Nuestras hipótesis nula y alternativa serán respectivamente:
+
+**Hipótesis nula**: La distribución de los grupos moroso y no moroso es la misma
+
+**Hipótesis alternativa**: La distribución de los grupos moroso y no moroso no es la misma
+
+Separamos los grupos moroso y no moroso usando el valor de la factura como base:
+
+```python
+moroso = tarjetas.query("moroso == 1").valor_factura
+no_moroso = tarjetas.query("moroso == 0").valor_factura
+```
+Usamos la función ranksums de scipy para calcular el p-value:
+```python
+ranksums(moroso, no_moroso)
+```
+
+### Lo que aprendimos
+
+Lo que aprendimos en esta aula:
+
+- Hicimos un análisis más profundo de los gráficos de distribución (histograma) usando displot.
+- Creamos gráficos diferentes, categorizando nuestra información con el parámetro col.
+- Hicimos una introducción al gráfico de dispersión (scatterplot) y al gráfico de modelo linear (lmplot).
+- Realizamos un test de hipótesis, para intentar determinar si la diferencia entre los grupos morosos y no morosos es estadísticamente significativa.
+
+### Proyecto del aula anterior
+
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+[Descargue los archivos en Github](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/tree/aula4 "Descargue los archivos en Github") o haga clic [aquí](https://github.com/alura-es-cursos/1779-Data-Visualization-Explorando-con-Seaborn/archive/aula4.zip "aquí") para descargarlos directamente.
